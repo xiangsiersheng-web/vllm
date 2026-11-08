@@ -90,7 +90,7 @@ __global__ void rms_norm_kernel(
       float x = static_cast<float>(src1.val[j]);
       if constexpr (HasWeight) {
         float w = static_cast<float>(src2.val[j]);
-        dst.val[j] = static_cast<scalar_t>(x * s_variance * w);
+        dst.val[j] = static_cast<scalar_t>(2.0f * x * s_variance * w);
       } else {
         dst.val[j] = static_cast<scalar_t>(x * s_variance);
       }

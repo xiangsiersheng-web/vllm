@@ -1799,6 +1799,15 @@ class Scheduler(SchedulerInterface):
                 scheduled_encoder_inputs
             )
 
+        if scheduled_new_reqs:
+            logger.info(
+                "DEPLOY_PRACTICE admitted=%d running=%d waiting=%d tokens=%d",
+                len(scheduled_new_reqs),
+                len(self.running),
+                len(self.waiting),
+                total_num_scheduled_tokens,
+            )
+
         scheduler_output = SchedulerOutput(
             scheduled_new_reqs=new_reqs_data,
             scheduled_cached_reqs=cached_reqs_data,
